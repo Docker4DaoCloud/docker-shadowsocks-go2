@@ -2,7 +2,7 @@ FROM golang:1.9.5 AS build
 
 WORKDIR /go
 
-RUN go get -u -v github.com/shadowsocks/go-shadowsocks2
+RUN GOPROXY="https://goproxy.io" GO111MODULE=on go get -u -v github.com/shadowsocks/go-shadowsocks2
 
 FROM alpine:3.7
 
