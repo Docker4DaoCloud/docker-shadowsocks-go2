@@ -6,7 +6,8 @@ RUN GOPROXY="https://goproxy.io" GO111MODULE=on go get -u -v github.com/shadowso
 
 FROM alpine:3.7
 
-RUN apk --no-cache add ca-certificates \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
+ && apk --no-cache add ca-certificates \
  && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
  && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.26-r0/glibc-2.26-r0.apk \
  && apk add --no-cache glibc-2.26-r0.apk \
